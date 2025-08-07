@@ -255,11 +255,12 @@ metadata:
 
 test_plan:
   current_focus:
-    - "FastAPI endpoint accepting multipart form data"
+    - "LLM integration with OpenAI GPT-4.1"
+  stuck_tasks:
     - "LLM integration with OpenAI GPT-4.1"
     - "Dynamic code generation and execution"
+    - "Web scraping capabilities"
     - "Visualization generation and base64 encoding"
-  stuck_tasks: []
   test_all: false
   test_priority: "high_first"
 
