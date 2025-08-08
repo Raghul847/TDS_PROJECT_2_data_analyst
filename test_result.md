@@ -175,7 +175,7 @@ backend:
     implemented: true
     working: false
     file: "/app/backend/server.py"
-    stuck_count: 1
+    stuck_count: 2
     priority: "medium"
     needs_retesting: false
     status_history:
@@ -185,6 +185,9 @@ backend:
         - working: false
           agent: "testing"
           comment: "❌ BLOCKED: Web scraping functions (scrape_wikipedia_table) are implemented correctly, but require LLM to generate scraping code which fails due to OpenAI quota exceeded."
+        - working: false
+          agent: "testing"
+          comment: "❌ BLOCKED: Web scraping functions remain properly implemented, but still blocked by invalid OpenAI API key preventing LLM from generating scraping code."
   
   - task: "Visualization generation and base64 encoding"
     implemented: true
