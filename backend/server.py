@@ -113,7 +113,7 @@ def process_image_file(file_path: str) -> Dict[str, Any]:
         logger.error(f"Error processing image file: {e}")
         return {}
 
-def scrape_wikipedia_table(url: str) -> pd.DataFrame:
+def scrape_wikipedia_table(url: str, table_index: int = 0) -> pd.DataFrame:
     """Scrape table data from Wikipedia URL"""
     try:
         response = requests.get(url)
@@ -121,10 +121,10 @@ def scrape_wikipedia_table(url: str) -> pd.DataFrame:
         
         # Find tables
         tables = pd.read_html(url)
-        if tables:
-            return tables[0]  # Return first table
+        if tables and len(tables) > table_index:
+            return tables[table_index]  # Return specified table
         else:
-            raise HTTPException(status_code=404, detail="No tables found on the webpage")
+            raise HTTPException(status_code=404, detail=f"Table {table_index} not found on the webpage")
     except Exception as e:
         logger.error(f"Error scraping Wikipedia: {e}")
         raise HTTPException(status_code=400, detail=f"Error scraping data: {str(e)}")
