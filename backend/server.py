@@ -170,6 +170,7 @@ async def execute_analysis_code(code: str, context: Dict[str, Any]) -> Any:
                 'abs': abs,
                 'round': round,
                 'sorted': sorted,
+                '__import__': __import__,  # Allow imports for library usage
             },
             'pd': pd,
             'np': np,
@@ -180,6 +181,7 @@ async def execute_analysis_code(code: str, context: Dict[str, Any]) -> Any:
             'BeautifulSoup': BeautifulSoup,
             'base64': base64,
             'BytesIO': BytesIO,
+            'io': io,  # Add io module for BytesIO usage
             'create_plot_base64': create_plot_base64,
             'scrape_wikipedia_table': scrape_wikipedia_table,
         }
