@@ -179,11 +179,11 @@ backend:
   
   - task: "Web scraping capabilities"
     implemented: true
-    working: false
+    working: "NA"
     file: "/app/backend/server.py"
-    stuck_count: 2
+    stuck_count: 0
     priority: "medium"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
         - working: "NA"
           agent: "main"
@@ -194,6 +194,9 @@ backend:
         - working: false
           agent: "testing"
           comment: "❌ BLOCKED: Web scraping functions remain properly implemented, but still blocked by invalid OpenAI API key preventing LLM from generating scraping code."
+        - working: "NA"
+          agent: "main"
+          comment: "Web scraping functions unchanged - should now work with Gemini LLM integration. Ready for testing."
   
   - task: "Visualization generation and base64 encoding"
     implemented: true
