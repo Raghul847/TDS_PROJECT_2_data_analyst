@@ -58,8 +58,11 @@ logger = logging.getLogger(__name__)
 
 # Initialize LLM Chat
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
 if not OPENAI_API_KEY:
     logger.error("OPENAI_API_KEY not found in environment variables")
+if not GEMINI_API_KEY:
+    logger.error("GEMINI_API_KEY not found in environment variables")
 
 class AnalysisRequest(BaseModel):
     task_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
