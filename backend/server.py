@@ -171,6 +171,7 @@ async def execute_analysis_code(code: str, context: Dict[str, Any]) -> Any:
                 'round': round,
                 'sorted': sorted,
                 '__import__': __import__,  # Allow imports for library usage
+                'Exception': Exception,  # Allow Exception handling
             },
             'pd': pd,
             'np': np,
