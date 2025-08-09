@@ -205,7 +205,7 @@ async def generate_analysis_code(question: str, file_info: Dict[str, Any]) -> st
     """Use LLM to generate Python analysis code"""
     try:
         chat = LlmChat(
-            api_key=OPENAI_API_KEY,
+            api_key=GEMINI_API_KEY,
             session_id=str(uuid.uuid4()),
             system_message="""You are an expert data analyst. Generate Python code to answer data analysis questions.
 
@@ -222,7 +222,7 @@ Available libraries: pandas (pd), numpy (np), matplotlib.pyplot (plt), plotly.gr
 Available functions: create_plot_base64(), scrape_wikipedia_table()
 
 Context information: """ + json.dumps(file_info, indent=2)
-        ).with_model("openai", "gpt-4.1")
+        ).with_model("gemini", "gemini-2.0-flash")
         
         user_message = UserMessage(
             text=f"Generate Python code to answer this question: {question}\n\nThe code should store the final answer in a variable called 'result'."
