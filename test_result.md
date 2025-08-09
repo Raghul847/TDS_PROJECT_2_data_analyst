@@ -120,13 +120,13 @@ backend:
           agent: "testing"
           comment: "✅ TESTED: API endpoint correctly accepts multipart form data with questions.txt and file attachments. Proper validation and error handling implemented."
   
-  - task: "LLM integration with OpenAI GPT-4.1"
+  - task: "LLM integration with Gemini 2.0-flash"
     implemented: true
-    working: false
+    working: "NA"
     file: "/app/backend/server.py"
-    stuck_count: 2
+    stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
         - working: "NA"
           agent: "main"
@@ -137,6 +137,9 @@ backend:
         - working: false
           agent: "testing"
           comment: "❌ BLOCKED: After API key update, still getting authentication error: 'Incorrect API key provided'. The current API key in backend/.env appears to be invalid or expired. LLM integration code is properly implemented but cannot function without valid API key."
+        - working: "NA"
+          agent: "main"
+          comment: "Switched from OpenAI to Google Gemini API. Updated LlmChat configuration to use gemini-2.0-flash model with Google AI Studio API key. Backend services restarted successfully."
   
   - task: "File processing for CSV, PDF, images, text"
     implemented: true
