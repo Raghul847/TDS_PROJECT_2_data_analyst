@@ -299,3 +299,5 @@ agent_communication:
       message: "Completed comprehensive backend testing. Core infrastructure (API endpoints, multipart form data, file processing, error handling, database) is working correctly. However, all LLM-dependent functionality is blocked by OpenAI API quota exceeded error. The backend architecture is sound but requires a valid OpenAI API key with available quota to function fully."
     - agent: "testing"
       message: "RETESTED after API key update: Basic infrastructure still working (health check, tasks endpoint, error handling). However, OpenAI API key authentication is still failing with 'Incorrect API key provided' error. The current API key in backend/.env appears to be invalid. All LLM-dependent functionality remains blocked."
+    - agent: "main"
+      message: "SWITCHED TO GEMINI: Completely migrated from OpenAI to Google Gemini API. Updated LlmChat to use gemini-2.0-flash model with Google AI Studio API key. Backend services restarted successfully. All LLM-dependent features should now work with Gemini integration. Ready for comprehensive testing."
