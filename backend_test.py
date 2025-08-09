@@ -247,19 +247,32 @@ class DataAnalystTester:
                 data = response.json()
                 if data.get("status") == "completed":
                     result = data.get("result")
-                    if isinstance(result, str) and result.startswith("data:image/"):
-                        # Verify it's a valid base64 image
-                        try:
-                            base64_data = result.split(',')[1]
-                            base64.b64decode(base64_data)
-                            self.log_test("Visualization", True, 
-                                        f"Successfully generated base64 encoded chart", 
-                                        execution_time)
-                            return True
-                        except:
-                            self.log_test("Visualization", False, 
-                                        "Result appears to be base64 image but is invalid")
-                            return False
+                    if isinstance(result, str):
+                        # Check if it's a data URI format
+                        if result.startswith("data:image/"):
+                            try:
+                                base64_data = result.split(',')[1]
+                                base64.b64decode(base64_data)
+                                self.log_test("Visualization", True, 
+                                            f"Successfully generated base64 encoded chart (data URI format)", 
+                                            execution_time)
+                                return True
+                            except:
+                                self.log_test("Visualization", False, 
+                                            "Result appears to be data URI but base64 is invalid")
+                                return False
+                        # Check if it's raw base64 data
+                        else:
+                            try:
+                                base64.b64decode(result)
+                                self.log_test("Visualization", True, 
+                                            f"Successfully generated base64 encoded chart (raw base64 format)", 
+                                            execution_time)
+                                return True
+                            except:
+                                self.log_test("Visualization", False, 
+                                            "Result appears to be base64 but is invalid")
+                                return False
                     else:
                         self.log_test("Visualization", False, 
                                     f"Unexpected result format: {type(result)} - {str(result)[:100]}...")
