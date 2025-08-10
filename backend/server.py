@@ -185,6 +185,7 @@ async def execute_analysis_code(code: str, context: Dict[str, Any]) -> Any:
             'io': io,  # Add io module for BytesIO usage
             'create_plot_base64': create_plot_base64,
             'scrape_wikipedia_table': scrape_wikipedia_table,
+            'duckdb': duckdb,
         }
         
         # Add context variables
